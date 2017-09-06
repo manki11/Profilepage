@@ -1,0 +1,592 @@
+html, body, .section, .container {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    font-family: sans-serif;
+    border-bottom: solid 2px #3A4B6E;
+}
+
+.page-header {
+    text-align: center;
+    display: inline;
+    padding: 8px 15px;
+    border: solid 2px #3A4B6E;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 300;
+    color: #3A4B6E;
+}
+
+button:active {
+    outline: none;
+    border: none;
+}
+
+.topnav {
+    width: 100%;
+    border-radius: 0px;
+    z-index: 1;
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: rgba(51, 51, 51, 1);
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: rgba(255, 255, 255, .9);
+    color: black;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+
+
+/*styling for home*/
+#home {
+    position: relative;
+    overflow: hidden;
+    margin-top: 40px;
+}
+
+#home-img {
+    width: 100%;
+}
+
+#home-img-div{
+    /*width: 100%;*/
+    /*height: 100%;*/
+    background: url("../img/background_img.png") no-repeat center;
+    /*background-size: cover;*/
+
+    background-size:cover;
+    height:auto;
+    width:100%;
+    height: 700px;
+}
+
+#home-header {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+}
+
+#home-header p{
+    text-align: center;
+    padding: 8px 15px;
+    border: solid 2px #ffffff;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: 300;
+    color: white;
+    position: relative;
+    left: -50%;
+}
+
+#home-content {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+}
+
+#home-content p{
+    position: relative;
+    left:-50%;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 200;
+    color: white;
+}
+
+
+/*styling for about*/
+#about-me {
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    overflow: hidden;
+    text-align: center;
+    background: #eeeeee;
+    /*background-color: #3A4B6E;*/
+}
+
+.am-container {
+    overflow: hidden;
+    background-color: white;
+    margin-top: 5%;
+    margin-left: 0%;
+    margin-right: 0%;
+
+    padding-right: 0%;
+
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 2px;
+
+    align-items: center;
+    position: relative;
+}
+
+.quote {
+    font-family: "Times New Roman";
+    font-weight: 100;
+    font-size: 30px;
+    color: darkslategrey;
+}
+
+#am-sub-heading {
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    color: #3A4B6E;
+    line-height: 26px;
+    margin-bottom: 40px;
+}
+
+#email-about-pic {
+    content: url("../img/email-about.svg");
+    width: 14px;
+    height: 14px;
+}
+
+#university-about-pic {
+    content: url("../img/university-about.svg");
+    width: 14px;
+    height: 14px;
+}
+
+#location-about-pic {
+    content: url("../img/location-about.svg");
+    width: 14px;
+    height: 14px;
+}
+
+.am-details {
+    margin: 5px 0px;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.am-details a{
+    text-decoration: none;
+}
+
+#twitter {
+    text-align: left;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    color: darkblue;
+    line-height: 25px;
+}
+
+#profile-dp {
+    width: 400px;
+    height: 500px;
+    /*margin-top: 13%;*/
+    /*margin-left: 15%;*/
+}
+
+#am-body {
+    width: 100%;
+
+    font-weight: 200;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 28px;
+
+}
+
+#am-content{
+    margin: 10px 30px;
+}
+
+#am-header {
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 28px;
+    color: red;
+    line-height: 36px;
+}
+
+/*styling of skills*/
+#skills {
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #eeeeee;
+    padding-bottom: 50px;
+}
+
+.container-page {
+    padding-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    margin-top: 10%;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+.cards-sm {
+    background-color: white;
+    padding: 1%;
+
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+
+    /*adding perspective */
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    -o-perspective: 1000px;
+    perspective: 1000px;
+}
+
+.cards-sm {
+    width: 350px;
+    height: 350px;
+    margin: 2%;
+
+}
+
+.large, .medium{
+    display: none;
+}
+
+.skills-img {
+    width: 100%;
+    height: 100%;
+}
+
+.cards-md:hover {
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.back-header {
+    font-size: 35px;
+    font-weight: 200;
+    font-family: sans-serif;
+    color: #000000;
+    letter-spacing: 3px;
+    margin: 20px auto;
+}
+
+.cards-sm-bgimg{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .2;
+    width: 100%;
+    height: 100%;
+}
+
+#android{
+    background: url("http://envyandroid.com/content/images/2015/03/android3.png");
+    background-size: cover;
+}
+
+#web{
+    background: url("../img/front-end.jpg");
+    background-size: cover;
+}
+
+#design{
+    background: url("http://simpleicon.com/wp-content/uploads/responsive-design.png");
+    background-size: cover;
+}
+
+.back-content {
+    text-align: left;
+    letter-spacing: 1px;
+    line-height: 20px;
+    font-size: 17px;
+    font-weight: 200;
+    font-family: sans-serif;
+    color: #4E4E4E;
+    padding: 30px 10px;
+}
+
+/*styling for projects*/
+#projects {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 50px;
+    background-color: #eeeeee;
+}
+
+.row-projects {
+    height: inherit;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    margin-top: 3%;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+.cards-projects {
+    width: 250px;
+    height: 200px;
+    background-color: white;
+    margin: 1vw;
+
+    padding: 2%;
+
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+}
+
+.cards-projects:hover {
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.project-name {
+    font-family: sans-serif;
+    font-weight: 200;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: #444444;
+}
+
+.project-desc {
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+    color: #666666;
+}
+
+.project-languages {
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.java {
+    color: #9c5317;
+}
+
+.xml {
+    color: #5e139c;
+}
+
+.js {
+    color: #1a9c12;
+}
+
+.html {
+    color: #ff2718;
+}
+
+.css {
+    color: blue;
+}
+
+.php {
+    color: darkgreen;
+}
+
+.project-link {
+    padding: 5px;
+    border: solid 1px #dddddd;
+    border-radius: 5px;
+    font-weight: 200;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: #888888;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.cards-projects div {
+    margin-top: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.project-link:hover {
+    background-color: #3A4B6E;
+    color: white;
+}
+
+
+/*styling of contact*/
+#contact {
+    max-width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin: 0px;
+    overflow: hidden;
+    background: #3A4B6E;
+}
+
+.page-header-light {
+    text-align: center;
+    display: inline;
+    padding: 8px 15px;
+    margin: 20px auto 50px auto;
+    border: solid 2px #ffffff;
+    font-size: 25px;
+    letter-spacing: 4px;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.form-enter {
+    border-width: 0px;
+    border-radius: 5px;
+    width: 70%;
+    margin: 3% 3%;
+    padding: 20px;
+}
+
+#contact-box {
+    width: 350px;
+    height: auto;
+    margin-top: 5%;
+    float: left;
+    margin-left: 2vw;
+
+}
+
+#details {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    width: 100%;
+    overflow: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#contact-details {
+    margin-top: 5%;
+    text-align: left;
+    background-color: white;
+    float: right;
+
+    margin-right: 1vw;
+
+    width: 350px;
+    height: auto;
+
+    padding: 2%;
+
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+}
+
+.cd-items {
+    margin: 4% 3%;
+    background-color: #eeeeee;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+#phone-pic {
+    content: url("../img/phone-receiver.svg");
+    width: 13px;
+    height: 13px;
+}
+
+#email-pic {
+    content: url("../img/email.svg");
+    width: 13px;
+    height: 13px;
+}
+
+#address-pic {
+    content: url("../img/location.svg");
+    width: 13px;
+    height: 13px;
+}
+
+#social-buttons {
+    margin-top: 5%;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.social {
+    background: transparent;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: solid 1px #ffffff;
+    margin: 3%;
+}
+
+.social:hover {
+    background: white;
+    cursor: pointer;
+}
+
+#send {
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: solid 1px #ffffff;
+    background-color: transparent;
+    color: white;
+}
+
+#send:hover {
+    background-color: white;
+    color: #3A4B6E;
+    cursor: pointer;
+}
+
+.container-page-contact{
+    margin: 0px;
+}
