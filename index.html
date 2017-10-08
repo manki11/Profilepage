@@ -10,15 +10,91 @@
     <title>Mankirat Singh</title>
 
 
-    <link rel="stylesheet" type="text/css" media="screen and (min-width: 320px) and (max-width: 499px)" href="css/style-mobile.css">
-    <link rel="stylesheet" type="text/css" media="screen and (min-width: 500px) and (max-width: 819px)" href="css/style-small.css">
-    <link rel="stylesheet" type="text/css" media="screen and (min-width: 820px) and (max-width: 1223px)" href="css/style-medium.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 320px) and (max-width: 499px)"
+          href="css/style-mobile.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 500px) and (max-width: 819px)"
+          href="css/style-small.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 820px) and (max-width: 1223px)"
+          href="css/style-medium.css">
     <link rel="stylesheet" type="text/css" media="screen and (min-width: 1224px)" href="css/style-large.css">
 
+    <script type="text/javascript" src="paper-full.js"></script>
 
 
-    <!--<link rel="stylesheet" media="screen and (max-device-width: 480px)" href="css/style-narrow.css">-->
+    <script type="text/paperscript" canvas="canvas">
+    // The amount of symbol we want to place;
+    var count = 50;
 
+    // Create a symbol, which we will use to place instances of later:
+    var path = new Path.Circle({
+        center: new Point(0, 0),
+        radius: 3,
+        fillColor: 'white',
+        strokeColor: 'black'
+    });
+
+    var symbol = new SymbolDefinition(path);
+
+    // Place the instances of the symbol:
+    for (var i = 0; i < count; i++) {
+        // The center position is a random point in the view:
+        var center = Point.random() * view.size;
+        var placed = symbol.place(center);
+        var scale = (i + 1) / count;
+        placed.scale(scale);
+        placed.data.vector = new Point({
+            angle: Math.random() * 360,
+            length : scale * Math.random() / 5
+        });
+    }
+
+    var vector = new Point({
+        angle: 45,
+        length: 0
+    });
+
+    var mouseVector = vector.clone();
+
+    function onMouseMove(event) {
+        mouseVector = view.center - event.point;
+    }
+
+    // The onFrame function is called up to 60 times a second:
+    function onFrame(event) {
+        vector = vector + (mouseVector - vector) / 50;
+
+        // Run through the active layer's children list and change
+        // the position of the placed symbols:
+        for (var i = 0; i < count; i++) {
+            var item = project.activeLayer.children[i];
+            var size = item.bounds.size;
+            var length = vector.length / 10 * size.width / 10;
+            item.position += vector.normalize(length) + item.data.vector;
+            keepInView(item);
+        }
+    }
+
+    function keepInView(item) {
+        var position = item.position;
+        var itemBounds = item.bounds;
+        var bounds = view.bounds;
+        if (itemBounds.left > bounds.width) {
+            position.x = -item.bounds.width;
+        }
+
+        if (position.x < -itemBounds.width) {
+            position.x = bounds.width + itemBounds.width;
+        }
+
+        if (itemBounds.top > view.size.height) {
+            position.y = -itemBounds.height;
+        }
+
+        if (position.y < -itemBounds.height) {
+            position.y = bounds.height  + itemBounds.height / 2;
+        }
+    }
+    </script>
 </head>
 <body>
 
@@ -34,13 +110,16 @@
 <section id="home" class="section">
     <div class="container">
 
-        <div id="home-img-div">
-        <!--<img id="home-img" src="img/background_img.png" alt="Developer Wallpapers"/>-->
-        </div>
+        <!--<div id="home-img-div">-->
+            <!--&lt;!&ndash;<img id="home-img" src="img/background_img.png" alt="Developer Wallpapers"/>&ndash;&gt;-->
+        <!--</div>-->
 
-            <div id="home-header">
-                <p>THIS IS MANKIRAT SINGH</p>
-            </div>
+        <canvas id="canvas" resize></canvas>
+
+
+        <div id="home-header">
+            <p>THIS IS MANKIRAT SINGH</p>
+        </div>
 
         <div id="home-content">
             <p>ANDROID AND WEB DEVELOPER</p>
@@ -56,16 +135,20 @@
             <img id="profile-dp" src="img/dp.jpg">
 
             <div id="am-body">
-                <h2 id="am-header"><span class="quote">"</span>Computers do not solve problems, they execute solutions<span class="quote">"</span></h2>
+                <h2 id="am-header"><span class="quote">"</span>Computers do not solve problems, they execute
+                    solutions<span class="quote">"</span></h2>
                 <div id="am-content">
-                    <p id="am-sub-heading">Hey there I am Mankirat Singh. I love making Android Apps and developing websites on Node.js. I also have experience in Front End Web development. Follow me <a href="https://twitter.com/MankiratSingh18" id="twitter">@manki11</a></p>
+                    <p id="am-sub-heading">Hey there I am Mankirat Singh. I love making Android Apps and developing
+                        websites on Node.js. I also have experience in Front End Web development. Follow me <a
+                                href="https://twitter.com/MankiratSingh18" id="twitter">@manki11</a></p>
 
-                    <p class="am-details"><span id="email-about-pic"></span>&nbsp;&nbsp;<a href="mailto:mankirat.work@gmail.com">mankirat.work@gmail.com</a></p>
+                    <p class="am-details"><span id="email-about-pic"></span>&nbsp;&nbsp;<a
+                            href="mailto:mankirat.work@gmail.com">mankirat.work@gmail.com</a></p>
 
-                    <p class="am-details"><span id="university-about-pic"></span>&nbsp;&nbsp;B.tech-IT IP University, New Delhi</p>
+                    <p class="am-details"><span id="university-about-pic"></span>&nbsp;&nbsp;B.tech-IT IP University,
+                        New Delhi</p>
 
                     <p class="am-details"><span id="location-about-pic"></span>&nbsp;&nbsp;New Delhi, India</p>
-
 
 
                 </div>
@@ -219,14 +302,16 @@
                 <p class="project-name">OTHELLO</p>
                 <p class="project-languages"><span class="java">JAVA</span>&nbsp;&nbsp;<span class="xml">XML</span></p>
                 <p class="project-desc">A board game with amazing UI</p>
-                <div><a href="https://play.google.com/store/apps/details?id=com.zcorp.game.othello&hl=en" class="project-link">Play Store</a></div>
+                <div><a href="https://play.google.com/store/apps/details?id=com.zcorp.game.othello&hl=en"
+                        class="project-link">Play Store</a></div>
             </div>
             <div class="cards-projects">
                 <p class="project-name">ZAILET</p>
                 <p class="project-languages"><span class="java">JAVA</span>&nbsp;&nbsp;<span class="xml">XML</span>&nbsp;&nbsp;<span
                         class="php">PHP</span></p>
                 <p class="project-desc">Official App of Zailet Media</p>
-                <div><a href="https://play.google.com/store/apps/details?id=com.zailet.zailetmedia&hl=en" class="project-link">Play Store</a></div>
+                <div><a href="https://play.google.com/store/apps/details?id=com.zailet.zailetmedia&hl=en"
+                        class="project-link">Play Store</a></div>
             </div>
             <div class="cards-projects">
                 <p class="project-name">TWEETY</p>
@@ -287,10 +372,12 @@
                     <p><span id="phone-pic"></span>&nbsp;&nbsp;<a href="tel:+919910888025">Phone: 9910888025</a></p>
                 </div>
                 <div class="cd-items">
-                    <p><span id="email-pic"></span>&nbsp;&nbsp;<a href="mailto:mankirat.work@gmail.com">Email: mankirat.work@gmail.com</a></p>
+                    <p><span id="email-pic"></span>&nbsp;&nbsp;<a href="mailto:mankirat.work@gmail.com">Email:
+                        mankirat.work@gmail.com</a></p>
                 </div>
                 <div class="cd-items">
-                    <p><span id="address-pic"></span>&nbsp;&nbsp;Address: Sec 21, Dwraka<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Delhi, 110077</p>
+                    <p><span id="address-pic"></span>&nbsp;&nbsp;Address: Sec 21, Dwraka<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New
+                        Delhi, 110077</p>
                 </div>
 
             </div>
@@ -298,15 +385,22 @@
 
         <div id="social-buttons">
             <button class="social" id="facebook">
-                <a href="https://www.facebook.com/mankirat.singh.5220"><img class="social-img" id="facebook-img" width="20px" height="20px" src="img/facebook-light.svg"></a>
+                <a href="https://www.facebook.com/mankirat.singh.5220"><img class="social-img" id="facebook-img"
+                                                                            width="20px" height="20px"
+                                                                            src="img/facebook-light.svg"></a>
             </button>
 
             <button class="social" id="google">
-                <a href="https://plus.google.com/u/1/108058695839786769260"><img class="social-img" id="google-img" width="20px" height="20px" src="img/google-light.svg"></a>
+                <a href="https://plus.google.com/u/1/108058695839786769260"><img class="social-img" id="google-img"
+                                                                                 width="20px" height="20px"
+                                                                                 src="img/google-light.svg"></a>
             </button>
 
             <button class="social" id="linkedin">
-                <a href="https://www.linkedin.com/in/mankirat-singh-10013013a/"><img class="social-img" id="linkedin-img" width="20px" height="20px" src="img/linkedin-light.svg"></a>
+                <a href="https://www.linkedin.com/in/mankirat-singh-10013013a/"><img class="social-img"
+                                                                                     id="linkedin-img" width="20px"
+                                                                                     height="20px"
+                                                                                     src="img/linkedin-light.svg"></a>
             </button>
 
 
@@ -317,96 +411,96 @@
 
 <script>
 
-    document.getElementById("facebook").onmouseover= function () {
-        document.getElementById("facebook-img").setAttribute('src','img/facebook-dark.svg')
+    document.getElementById("facebook").onmouseover = function () {
+        document.getElementById("facebook-img").setAttribute('src', 'img/facebook-dark.svg')
     }
 
-    document.getElementById("facebook").onmouseout= function () {
-        document.getElementById("facebook-img").setAttribute('src','img/facebook-light.svg')
+    document.getElementById("facebook").onmouseout = function () {
+        document.getElementById("facebook-img").setAttribute('src', 'img/facebook-light.svg')
     }
 
-    document.getElementById("google").onmouseover= function () {
-        document.getElementById("google-img").setAttribute('src','img/google-dark.svg')
+    document.getElementById("google").onmouseover = function () {
+        document.getElementById("google-img").setAttribute('src', 'img/google-dark.svg')
     }
 
-    document.getElementById("google").onmouseout= function () {
-        document.getElementById("google-img").setAttribute('src','img/google-light.svg')
+    document.getElementById("google").onmouseout = function () {
+        document.getElementById("google-img").setAttribute('src', 'img/google-light.svg')
     }
 
-    document.getElementById("linkedin").onmouseover= function () {
-        document.getElementById("linkedin-img").setAttribute('src','img/linkedin-dark.svg')
+    document.getElementById("linkedin").onmouseover = function () {
+        document.getElementById("linkedin-img").setAttribute('src', 'img/linkedin-dark.svg')
     }
 
-    document.getElementById("linkedin").onmouseout= function () {
-        document.getElementById("linkedin-img").setAttribute('src','img/linkedin-light.svg')
+    document.getElementById("linkedin").onmouseout = function () {
+        document.getElementById("linkedin-img").setAttribute('src', 'img/linkedin-light.svg')
     }
 
-    var prevscroll=0;
+    var prevscroll = 0;
     $(window).scroll(function (event) {
-        var scroll= $(window).scrollTop();
+        var scroll = $(window).scrollTop();
 
-        if(scroll>prevscroll){
+        if (scroll > prevscroll) {
 //            down
             $("#myTopnav").show();
-        }else{
+        } else {
 //            up
             $("#myTopnav").show();
         }
-        prevscroll=scroll;
+        prevscroll = scroll;
 
     })
 
-    var prevdiv="home";
+    var prevdiv = "home";
 
     $(window).scroll(function () {
-        var scroll= $(window).scrollTop();
+        var scroll = $(window).scrollTop();
 
 //        console.log("contact"+ $("#contact").position().top);
 //        console.log("contact"+ scroll);
 
 
-        if(scroll > $("#contact").position().top-10 && !(prevdiv=="contact")){
+        if (scroll > $("#contact").position().top - 10 && !(prevdiv == "contact")) {
             $('.topnav a').removeClass('active');
-            console.log("contact"+ scroll);
-            prevdiv="contact";
+            console.log("contact" + scroll);
+            prevdiv = "contact";
             $("#nav-contact").addClass('active');
-        } else if(scroll >= $("#projects").position().top && !(prevdiv=="projects") &&  scroll < $("#contact").position().top){
+        } else if (scroll >= $("#projects").position().top && !(prevdiv == "projects") && scroll < $("#contact").position().top) {
             $('.topnav a').removeClass('active');
             console.log("projects");
-            prevdiv="projects";
+            prevdiv = "projects";
             $("#nav-projects").addClass('active');
-        } else if(scroll >= $("#skills").position().top && !(prevdiv=="skills") && scroll < $("#projects").position().top){
+        } else if (scroll >= $("#skills").position().top && !(prevdiv == "skills") && scroll < $("#projects").position().top) {
             $('.topnav a').removeClass('active');
             console.log("skills");
-            prevdiv="skills";
+            prevdiv = "skills";
             $("#nav-skills").addClass('active');
-        } else if(scroll >= $("#about-me").position().top && !(prevdiv=="about-me") && scroll < $("#skills").position().top){
+        } else if (scroll >= $("#about-me").position().top && !(prevdiv == "about-me") && scroll < $("#skills").position().top) {
             $('.topnav a').removeClass('active');
             console.log("about-me");
-            prevdiv="about-me";
+            prevdiv = "about-me";
             $("#nav-about-me").addClass('active');
-        } else if(scroll >= $("#home").position().top && !(prevdiv=="home") && scroll < $("#about-me").position().top){
+        } else if (scroll >= $("#home").position().top && !(prevdiv == "home") && scroll < $("#about-me").position().top) {
             $('.topnav a').removeClass('active');
             console.log("home");
-            prevdiv="home";
+            prevdiv = "home";
             $("#nav-home").addClass('active');
         }
     })
 
 
     document.addEventListener('mousemove', function (e) {
-        mouseY=e.clientY || e.pageY;
+        mouseY = e.clientY || e.pageY;
 
-        if(mouseY<100){
+        if (mouseY < 100) {
             $("#myTopnav").show();
         }
-        else{
-            if($(window).width>820) {
+        else {
+            if ($(window).width > 820) {
                 $("#myTopnav").hide();
             }
         }
-    },false);
-    
+    }, false);
+
     $("#nav-home").click(function () {
         $('html,body').animate({scrollTop: $("#home").offset().top}, 'fast');
     })
@@ -426,7 +520,7 @@
     $("#nav-contact").click(function () {
         $('html,body').animate({scrollTop: $("#contact").offset().top}, 'fast');
     })
-    
+
 
 </script>
 

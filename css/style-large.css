@@ -67,6 +67,12 @@ a:hover {
     background-image: url("../img/background_img.png");
 }
 
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+    background-color: #3A4B6E;
+}
+
 #home-img {
     width: 100%;
 }
