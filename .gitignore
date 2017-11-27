@@ -3,9 +3,7 @@
 ### Example user template
 
 # IntelliJ project files
-.idea
-*.iml
+.idea/
 out
 gen
 .gitignore
-.idea/inspectionProfiles/
